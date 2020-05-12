@@ -1,2 +1,5 @@
 lsof   --- программа для просмотра открытых файлов (user,process, что открыл и как открыл)
-  lsof -p pid  (FD - 0u ввод, 1u вывод,  2u вывод ошибок)
+  lsof -p pid  (FD - 0u ввод, 1u вывод,  2u вывод ошибок, mem, txt, rtd и cwd каталоги корневой и текущий
+                u -user, w -write, r - read (pipe), ;)
+              (TYPE - DIR, CHR - терминал, REG - процесс, FIFO - канал, UNIX - сокет, )
+ ps (up process, jp process - родители, axf - дерево)
