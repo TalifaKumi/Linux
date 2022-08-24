@@ -1,0 +1,57 @@
+[root@tvtest ~]# df -h
+Filesystem                       Size  Used Avail Use% Mounted on
+devtmpfs                          99G     0   99G   0% /dev
+tmpfs                             99G     0   99G   0% /dev/shm
+tmpfs                             99G   18M   99G   1% /run
+tmpfs                             99G     0   99G   0% /sys/fs/cgroup
+/dev/mapper/ol_tvtest-root        50G  5.6G   45G  12% /
+/dev/mapper/ol_tvtest-home       145G  2.9G  143G   2% /home
+/dev/sda1                       1014M  310M  705M  31% /boot
+/dev/mapper/LVM_tvtest-LVM_data  4.6T   28K  4.3T   1% /oradata
+tmpfs                             20G   12K   20G   1% /run/user/42
+tmpfs                             20G     0   20G   0% /run/user/1000
+tmpfs                             20G     0   20G   0% /run/user/0
+
+вот тут админчики насоздавать под оракл.  мне надо /u01  100 гиг. как откуда прицепить? под хоум
+
+lsblk
+NAME                    MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+sdd                       8:48   0  890G  0 disk
+└─sdd1                    8:49   0  890G  0 part
+  └─LVM_tvtest-LVM_data 252:3    0  4.6T  0 lvm  /oradata
+sdb                       8:16   0  184G  0 disk
+└─sdb1                    8:17   0  184G  0 part
+  └─LVM_tvtest-LVM_data 252:3    0  4.6T  0 lvm  /oradata
+sr0                      11:0    1 1024M  0 rom
+sdc                       8:32   0  3.5T  0 disk
+└─sdc1                    8:33   0  3.5T  0 part
+  └─LVM_tvtest-LVM_data 252:3    0  4.6T  0 lvm  /oradata
+sda                       8:0    0  200G  0 disk
+├─sda2                    8:2    0  199G  0 part
+│ ├─ol_tvtest-swap      252:1    0    4G  0 lvm  [SWAP]
+│ ├─ol_tvtest-home      252:2    0  145G  0 lvm  /home
+│ └─ol_tvtest-root      252:0    0   50G  0 lvm  /
+└─sda1                    8:1    0    1G  0 part /boot
+
+
+Диск sdb не подключен вообще никуда. Можно его подмонтировать к /u01 там 184g
+
+sdb                       8:16   0  184G  0 disk
+
+[root@tvtest ~]# parted /dev/sdb    -------------------   с этой командой осторожнее
+GNU Parted 3.1
+Using /dev/sdb
+Welcome to GNU Parted! Type 'help' to view a list of commands.
+(parted) p
+Model: VMware Virtual disk (scsi)
+Disk /dev/sdb: 198GB
+Sector size (logical/physical): 512B/512B
+Partition Table: msdos
+Disk Flags:
+
+Number  Start   End    Size   Type     File system  Flags
+ 1      1049kB  198GB  198GB  primary               lvm
+ quit
+ 
+mkdir /oradata/u01
+
