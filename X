@@ -26,3 +26,6 @@ vnc viewer
 
 не на винде
 xrdp
+yum search xrdp
+Как из Linux подключиться к удалённому столу Windows по RDP
+ xfreerdp /f /u:Irina_Fast /p:QAZ77wsx /v:192.168.82.24
