@@ -1,0 +1,28 @@
+yum search vnc
+Loaded plugins: langpacks, ulninfo
+================================================================= N/S matched: vnc ==================================================================
+gtk-vnc2.i686 : A GTK3 widget for VNC clients
+gtk-vnc2.x86_64 : A GTK3 widget for VNC clients
+gvnc.i686 : A GObject for VNC connections
+gvnc.x86_64 : A GObject for VNC connections
+libvncserver.i686 : Library to make writing a vnc server easy
+libvncserver.x86_64 : Library to make writing a vnc server easy
+tigervnc.x86_64 : A TigerVNC remote display system
+tigervnc-icons.noarch : Icons for TigerVNC viewer
+tigervnc-license.noarch : License of TigerVNC suite
+tigervnc-server.x86_64 : A TigerVNC server
+tigervnc-server-minimal.x86_64 : A minimal installation of TigerVNC server
+kdenetwork-krdc.x86_64 : A client for Desktop Sharing and other VNC servers
+kdenetwork-krfb.x86_64 : Desktop Sharing server, allow others to access your desktop via VNC
+vinagre.i686 : VNC client for GNOME
+vinagre.x86_64 : VNC client for GNOME
+
+  Name and summary matches only, use "search all" for everything.
+  
+   yum install tigervnc-server.x86_64
+   
+ на винде
+vnc viewer
+
+не на винде
+xrdp
