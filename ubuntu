@@ -6,8 +6,10 @@ cat /etc/issue.net
  ------------------ ядро, версия, имя компьютера, дата сборки и архитектура
   uname -a
    uname -r
+    uname -m
      getconf LONG_BIT
       cat /proc/cmdline
      
   ---------------- процессор архитектура
    lscpu
+   dpkg --print-architecture
