@@ -1,0 +1,13 @@
+---------------  версия
+lsb_release -a
+cat /etc/issue.net
+ cat /etc/lsb-release
+ 
+ ------------------ ядро, версия, имя компьютера, дата сборки и архитектура
+  uname -a
+   uname -r
+     getconf LONG_BIT
+      cat /proc/cmdline
+     
+  ---------------- процессор архитектура
+   lscpu
