@@ -13,3 +13,17 @@ cat /etc/issue.net
   ---------------- процессор архитектура
    lscpu
    dpkg --print-architecture
+   
+-------------  логи загрузки
+sudo dmesg | grep error
+sudo dmesg -l warn
+И так далее.  Информация, которую выводит команда dmesg, хранится в log файле /var/log/dmesg
+
+--------  авторизация 
+ tail -100 /var/log/auth.log
+ 
+ ---------  ошибки в системном логе
+ sudo more /var/log/syslog | grep error
+ 
+ ---------  лог крона
+ sudo cat /var/log/cron.log
