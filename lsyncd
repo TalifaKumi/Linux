@@ -1,5 +1,19 @@
+more /etc/pgbackrest.conf
+....
 
+[global]
+repo1-host=mg2-bkp-01.prod-ins2.pcbl.local
+repo1-retention-full=2
+repo1-host-user=postgres
+archive-async=y
+spool-path=/var/spool/pgbackrest
 
+[global:archive-get]
+process-max=2
+
+[global:archive-push]
+process-max=2
+compress-level=3
 
 ====================  на бекапном
 i.fast@mg2-bkp-01:~$ sudo more /var/log/lsyncd/lsyncd.status | grep praefect | wc
