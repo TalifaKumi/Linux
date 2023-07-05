@@ -1,1 +1,58 @@
-lsyncd
+i.fast@mg2-bkp-01:~$ sudo more /var/log/lsyncd/lsyncd.status | grep praefect | wc
+   2282    6328  282639
+i.fast@mg2-bkp-01:~$ sudo more /var/log/lsyncd/lsyncd.status | grep audit | wc
+    364     773   36089
+i.fast@mg2-bkp-01:~$ sudo more /var/log/lsyncd/lsyncd.status | grep report | wc
+    148     312   14171
+i.fast@mg2-bkp-01:~$ sudo more /var/log/lsyncd/lsyncd.status | grep shd1 | wc
+    191     391   20102
+
+i.fast@mg2-bkp-01:~$ sudo more /etc/lsyncd/lsyncd.conf.lua
+settings {
+  statusFile = "/var/log/lsyncd/lsyncd.status",
+  statusInterval = 5,
+  log_syslog = true,
+}
+sync {
+  default.rsyncssh,
+  source="/data/backups-mirror/huawei/",
+  host="mg13-bkp01.prod.pcbl.local",
+  targetdir="/data/backups-mirror/prod/",
+  delay = 3,
+  exclude = { '.*' , '*.tmp' },
+  rsync = {
+          compress = true,
+          archive  = true,
+          _extra = { "-usS" },
+          verbose = true,
+         }
+}
+
+
+========
+systemctl enable lsyncd
+systemctl status lsyncd
+
+Открываем конфигурационный файл.
+
+а) Для CentOS:
+
+vi /etc/lsyncd.conf
+
+б) Для Ubuntu:
+
+vi /etc/lsyncd/lsyncd.conf.lua
+* где:
+
+settings — общие настройки.
+logfile — путь до файла логов.
+statusFile — файл, в который заносятся изменения, найденные с помощью inotify.
+statusInterval — интервал в секундах для обновления statusFile.
+insist — позволяет продолжить работу сервиса, даже если одна или несколько целевых директорий недоступны.
+nodaemon — отключаться или нет от вызывающей стороны. Проще говоря, если разрешить, то будет больше информации по его работе. Для боевого режима можно отключить.
+sync — настройка для синхронизации конкретного ресурса. Для каждого создается своя секция sync.
+default.rsync — должен использоваться протокол для синхронизации rsync.
+source — источник, откуда синхронизируем данные.
+target — куда синхронизируем.
+* в данном примере мы синхронизируем два каталога на локальном компьютере. Таким же образом, можно синхронизировать данные и в подмонтированных каталогах, например, по nfs или cifs (smb).
+
