@@ -1,0 +1,3 @@
+du -sm * | sort -n
+du -sm *
+du -h /dir
