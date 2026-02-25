@@ -1,0 +1,21 @@
+Файл /sys/block/sdb/queue/scheduler в Linux — это объект ядра, который указывает тип планировщика ввода-вывода (I/O scheduler) для диска sdb. Тип планировщика указывается на уровне отдельного дискового устройства. 
+cromwell-intl.com
+vm-guru.com
+doc.opensuse.org
+Некоторые доступные типы планировщиков:
+noop (он же none) — используется для SSD и NVMe-устройств, уменьшает нагрузку на CPU;
+mq-deadline — подходит для HDD-дисков;
+bfq — ориентирован на справедливость, позволяет назначать приоритеты ввода-вывода задачам;
+kyber — ориентирован на задержку, позволяет устанавливать целевые задержки для операций чтения и синхронной записи.
+
+
+==========================
+
+sudo cat /sys/block/sdb/queue/scheduler
+[mq-deadline] kyber bfq none
+
+echo none > /sys/block/sdb/queue/scheduler
+ cat /sys/block/sdb/queue/scheduler
+[none] mq-deadline kyber bfq 
+
+
