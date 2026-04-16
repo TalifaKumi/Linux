@@ -11,3 +11,11 @@ find /home/bob/dir -type f -name *.log -size +100M -exec rm -f {} \;
 А все файлы, созданные пять и более дней назад, ищутся так:
 
 find . -type f -ctime +5
+
+find /u01/pgsql/16/data/log/ -type f -name *.log -ctime +30 -exec ls -lt {} \;
+find /u01/pgsql/16/data/log/ -type f -name *.log -ctime +30 -exec rm  {} \;
+
+find /u01/pgsql/16/data/log/ -type f -name *.log -ctime +30 -exec rm  {} \;
+
+
+
